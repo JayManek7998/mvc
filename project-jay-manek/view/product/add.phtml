@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Product</title>
+</head>
+
+<body>
+<form action="<?php echo $this->getUrlObject()->getUrl('insert'); ?>" method="post">
+	
+	<table class="add-header">
+		<tr align="center">
+			<td><h2>ADD PRODUCT</h2></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+			
+	<table class="add-data-table" align="center">
+		<tr align="center">
+			<td>Name</td>
+			<td><input type="text" name="product[name]"></td>
+		</tr>
+		<tr align="center">
+			<td>SKU</td>
+			<td><input type="text" name="product[sku]"></td>
+		</tr>
+		<tr align="center">
+			<td>Cost</td>
+			<td><input type="text" name="product[cost]"></td>
+		</tr>
+		<tr align="center">
+			<td>Price</td>
+			<td><input type="text" name="product[price]"></td>
+		</tr>
+		<tr align="center">
+			<td>Quantity</td>
+			<td><input type="text" name="product[quantity]"></td>
+		</tr>
+		<tr align="center">
+			<td>Status</td>
+			<td>
+				<select name="product[status]">
+					<option value="<?php echo Model_Product::STATUS_ACTIVE; ?>"><?php echo Model_Product::STATUS_ACTIVE_LBL; ?></option>
+					<option value="<?php echo Model_Product::STATUS_INACTIVE; ?>" selected><?php echo Model_Product::STATUS_INACTIVE_LBL; ?></option>
+				</select>
+			</td>
+		</tr>
+		<tr align="center">
+			<td colspan="2"><button><a href="<?php echo $this->getUrlObject()->getUrl('grid'); ?>">Cancel</a></button>
+			<button type="submit">Submit</button></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

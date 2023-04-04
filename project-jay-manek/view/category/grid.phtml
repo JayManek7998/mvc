@@ -1,0 +1,58 @@
+<?php
+$categories = $this->categories;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Category</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+	<table>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+		<?php $this->setTemplate('html/message.phtml')->render();?>
+	</table>
+	<br/>
+	<br/>
+	<table class="manage-table" border="1px">
+		<tr align="center">
+			<td width="70%">MANAGE CATEGORY</td>
+			<td><button><a href="<?php echo $this->getUrl('add', null , [], true);?>" style="text-decoration: none;">ADD CATEGORY</a></button></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="grid-table" border="1px">
+		<?php if (!$categories): ?>
+		<tr>
+			<td colspan="8" align="center"><b>No data found.</b></td>
+		</tr>
+		<?php else: ?>
+		<tr align="center">
+			<th>Category Id</th>
+			<th>Path</th>
+			<th>Name</th>
+			<th>Status</th>
+			<th>Description</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>EDIT</th>
+			<th>DELETE</th>
+		</tr>
+		<?php foreach ($categories as $category) : ?>
+		<tr align="center">
+			<td><?php echo $category->category_id; ?></td>
+			<td><?php echo $category->path; ?></td>
+			<td><?php echo $category->name; ?></td>
+			<td><?php echo $category->getStatusText(); ?></td>
+			<td><?php echo $category->description; ?></td>
+			<td><?php echo $category->created_at; ?></td>
+			<td><?php echo $category->updated_at; ?></td>
+			<td><a href="<?php echo $this->getUrl('edit', null, ['id'=> $category->category_id], true);?>">EDIT</a></td>
+			<td><a href="<?php echo $this->getUrl('delete', null , ['id'=> $category->category_id], true);?>">DELETE</a></td>
+		</tr>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</table>
+</body>
+</html>

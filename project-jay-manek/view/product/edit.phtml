@@ -1,0 +1,59 @@
+<?php $product = $this->product; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+<form action="<?php echo $this->getUrl('save'); ?>" method="post">
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+	<br/>
+	<br/>
+	<table class="add-header">
+		<tr align="center">
+			<td><h2>PRODUCT INFORMATION</h2></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="add-data-table" align="center">
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="product[name]" value="<?php echo $product->name; ?>"></td>
+		</tr>
+		<tr>
+			<td>SKU</td>
+			<td><input type="text" name="product[sku]" value="<?php echo $product->sku; ?>"></td>
+		</tr>
+		<tr>
+			<td>Cost</td>
+			<td><input type="text" name="product[cost]" value="<?php echo $product->cost; ?>"></td>
+		</tr>
+		<tr>
+			<td>Price</td>
+			<td><input type="text" name="product[price]" value="<?php echo $product->price; ?>"></td>
+		</tr>
+		<tr>
+			<td>Quantity</td>
+			<td><input type="text" name="product[quantity]" value="<?php echo $product->quantity; ?>"></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+				<select name="product[status]">
+					<?php foreach ($product->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $product->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button><a href="<?php echo $this->getUrl('grid', null, [], true); ?>">Cancel</a></button>
+			<button type="submit">Submit</button></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

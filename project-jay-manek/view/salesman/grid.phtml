@@ -1,0 +1,66 @@
+<?php
+$salesmans = $this->salesmans;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Salesman</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+	<table>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+		<?php $this->setTemplate('html/message.phtml')->render();?>
+	</table>
+	<br/>
+	<br/>
+	<table class="manage-table" border="1px">
+		<tr align="center">
+			<td width="70%">MANAGE SALESMAN</td>
+			<td><button><a href="<?php echo $this->getUrl('add', null , [], true);?>" style="text-decoration: none;">ADD SALESMAN</a></button></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="grid-table" border="1px">
+		<?php if (!$salesmans): ?>
+		<tr>
+			<td colspan="8" align="center"><b>No data found.</b></td>
+		</tr>
+		<?php else: ?>
+		<tr align="center">
+			<th>Salesman Id</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Gender</th>
+			<th>Mobile</th>
+			<th>Company</th>
+			<th>Status</th>
+			<th>Price</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>EDIT</th>
+			<th>DELETE</th>
+		</tr>
+		<?php foreach ($salesmans as $salesman) : ?>
+		<tr align="center">
+			<td><?php echo $salesman->salesman_id; ?></td>
+			<td><?php echo $salesman->first_name; ?></td>
+			<td><?php echo $salesman->last_name; ?></td>
+			<td><?php echo $salesman->email; ?></td>
+			<td><?php echo $salesman->getGenderText(); ?></td>
+			<td><?php echo $salesman->mobile; ?></td>
+			<td><?php echo $salesman->company; ?></td>
+			<td><?php echo $salesman->getStatusText(); ?></td>
+			<td><a href="<?php echo $this->getUrl('grid','salesman_price',['id'=>$salesman->salesman_id]);?>">PRICE</td>
+			<td><?php echo $salesman->created_at; ?></td>
+			<td><?php echo $salesman->updated_at; ?></td>
+			<td><a href="<?php echo $this->getUrl('edit', null, ['id'=> $salesman->salesman_id], true);?>">EDIT</a></td>
+			<td><a href="<?php echo $this->getUrl('delete', null , ['id'=> $salesman->salesman_id], true);?>">DELETE</a></td>
+		</tr>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</table>
+</body>
+</html>

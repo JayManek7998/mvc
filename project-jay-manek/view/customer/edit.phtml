@@ -1,0 +1,66 @@
+<?php $customer = $this->customer; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>customer</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+<form action="<?php echo $this->getUrl('save'); ?>" method="post">
+	<?php $this->setTemplate('html/header.phtml')->render();?>
+	<br/>
+	<br/>
+	<table class="add-header">
+		<tr align="center">
+			<td><h2>CUSTOMER INFORMATION</h2></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="add-data-table" align="center">
+		<tr>
+			<td>First Name</td>
+			<td><input type="text" name="customer[first_name]" value="<?php echo $customer->first_name; ?>"></td>
+		</tr>
+		<tr>
+			<td>Last Name</td>
+			<td><input type="text" name="customer[last_name]" value="<?php echo $customer->last_name; ?>"></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="customer[email]" value="<?php echo $customer->email; ?>"></td>
+		</tr>
+		<tr>
+			<td>Gender</td>
+			<td>
+				<select name="customer[gender]">
+					<?php foreach ($customer->getGenderText() as $key => $value) : ?>
+					<?php $selected = ($key == $customer->getGender()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Mobile</td>
+			<td><input type="text" name="customer[mobile]" value="<?php echo $customer->mobile; ?>"></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+				<select name="customer[status]">
+					<?php foreach ($customer->getStatusOptions() as $key => $value) : ?>
+					<?php $selected = ($key == $customer->getStatus()) ? "selected" : ''; ?>
+					<option value="<?php echo $key; ?>" <?php echo $selected;?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button><a href="<?php echo $this->getUrl('grid', null, [], true); ?>">Cancel</a></button>
+			<button type="submit">Submit</button></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

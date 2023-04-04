@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Shipping</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+<form action="<?php echo $this->getUrlObject()->getUrl('insert'); ?>" method="post">
+	
+	<table class="add-header">
+		<tr>
+			<td><h2>ADD SHIPPING</h2></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+			
+	<table class="add-data-table" align="center">
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="shipping[name]"></td>
+		</tr>
+		<tr>
+			<td>Amount</td>
+			<td><input type="number" name="shipping[amount]"></td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+				<select name="shipping[status]">
+					<option value="<?php echo Model_Product::STATUS_ACTIVE; ?>"><?php echo Model_Product::STATUS_ACTIVE_LBL; ?></option>
+					<option value="<?php echo Model_Product::STATUS_INACTIVE; ?>" selected><?php echo Model_Product::STATUS_INACTIVE_LBL; ?></option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><button><a href="<?php echo $this->getUrlObject()->getUrl('grid'); ?>">Cancel</a></button>
+			<button type="submit">Submit</button></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

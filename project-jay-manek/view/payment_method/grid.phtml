@@ -1,0 +1,54 @@
+<?php
+$payments = $this->payments;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Payment</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+	<table>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+		<?php $this->setTemplate('html/message.phtml')->render();?>
+	</table>
+	<br/>
+	<br/>
+	<table class="manage-table" border="1px">
+		<tr align="center">
+			<td width="70%">MANAGE PAYMENT</td>
+			<td><button><a href="<?php echo $this->getUrl('add', null , [], true);?>" style="text-decoration: none;">ADD PAYMENT</a></button></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="grid-table" border="1px">
+		<?php if (!$payments): ?>
+		<tr>
+			<td colspan="8" align="center"><b>No data found.</b></td>
+		</tr>
+		<?php else: ?>
+		<tr align="center">
+			<th>Payment Method Id</th>
+			<th>Name</th>
+			<th>Status</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>EDIT</th>
+			<th>DELETE</th>
+		</tr>
+		<?php foreach ($payments as $payment) : ?>
+		<tr align="center">
+			<td><?php echo $payment->payment_method_id; ?></td>
+			<td><?php echo $payment->name; ?></td>
+			<td><?php echo $payment->getStatusText(); ?></td>
+			<td><?php echo $payment->created_at; ?></td>
+			<td><?php echo $payment->updated_at; ?></td>
+			<td><a href="<?php echo $this->getUrl('edit', null, ['id'=> $payment->payment_method_id], true);?>">EDIT</a></td>
+			<td><a href="<?php echo $this->getUrl('delete', null , ['id'=> $payment->payment_method_id], true);?>">DELETE</a></td>
+		</tr>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</table>
+</body>
+</html>

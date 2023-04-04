@@ -1,0 +1,104 @@
+<?php
+$medias = $this->medias;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Media</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+	<table>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+		<?php $this->setTemplate('html/message.phtml')->render();?>
+	</table>
+<br/>
+<br/>
+	<table class="manage-table">
+		<tr align="center">
+			<td width="40%"><h4>Media Grid</h4></td>
+			<td><button><a href="<?php echo $this->getUrl('grid', 'product', [], true);?>">Go Back</a></button></td>
+			<td><button>
+				<a href="<?php echo $this->getUrl('add', null, ['product_id' => Ccc::getModel('Core_Request')->getParem('id')], true);?>">Add Media</a>
+			</button></td>
+		
+	<form action="<?php echo $this->getUrl('operation', null, ['product_id' => Ccc::getModel('Core_Request')->getParem('id')]);?>" method="post">
+			<td><button type="submit" name="update" value="update">Update</button></td>
+			<td><button type="submit" name="deleted" value="delete">Delete</button>
+		</td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+			<table class="grid-table">
+				<tr align="center">
+					<th>Media ID</th>
+					<th>Name</th>
+					<th>Image</th>
+					<th>Status</th>
+					<th>Base</th>
+					<th>Small</th>
+					<th>Thumbnail</th>
+					<th>Gallery</th>
+					<th>Created At</th>
+					<th>DELETE</th>
+				</tr>
+				<?php foreach ($medias as $media) : ?>
+				<tr align="center">
+					<td><?php echo $media->media_id; ?></td>
+					<td><?php echo $media->name; ?></td>
+					<td style="width: 300px; height: 300px;">
+						<img src="Images/<?php echo $media->name;?>.jpeg" style="width: 100%; height: 100%; object-fit: cover;">
+					</td>
+					<td>
+					<?php 
+	                	if ($media->status == Model_Product_Media_Row::STATUS_ACTIVE) {
+	                    	echo Model_Product_Media_Row::STATUS_ACTIVE_LBL;
+	                	} else {
+	                    	echo Model_Product_Media_Row::STATUS_INACTIVE_LBL;
+	               		}
+					?>
+					</td>
+					<td>
+						<input type="radio" name="base" value="<?php echo $media->media_id; ?>"
+						<?php
+							if ($media->base == 1) {
+								echo "checked";
+							}
+						?>>
+					</td>
+					<td>
+						<input type="radio" name="small" value="<?php echo $media->media_id; ?>"
+						<?php
+							if ($media->small == 1) {
+								echo "checked";
+							}
+						?>>
+					</td>
+					<td>
+						<input type="radio" name="thumbnail" value="<?php echo $media->media_id; ?>"
+						<?php
+							if ($media->thumbnail == 1) {
+								echo "checked";
+							}
+						?>>
+					</td>
+					<td>
+						<input type="checkbox" name="gallerys[]" value="<?php echo $media->media_id; ?>"
+						<?php
+							if ($media->gallery == 1) {
+								echo "checked";
+							}
+						?>>
+					</td>
+					<td><?php echo $media->created_at;?></td>
+					<td>
+						<input type="checkbox" name="delete[]" value="<?php echo $media->media_id; ?>">
+					</td>
+				</tr>
+			<?php endforeach; ?>
+			</table>
+		</div>
+	</form>
+</body>
+</html>

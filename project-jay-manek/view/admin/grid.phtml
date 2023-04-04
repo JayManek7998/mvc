@@ -1,0 +1,56 @@
+<?php
+$admins = $this->admins;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" type="text/css" href="view/skin/style.css">
+</head>
+<body>
+	<table>
+		<?php $this->setTemplate('html/header.phtml')->render();?>
+		<?php $this->setTemplate('html/message.phtml')->render();?>
+	</table>
+	<br/>
+	<br/>
+	<table class="manage-table" border="1px">
+		<tr align="center">
+			<td width="70%">MANAGE ADMIN</td>
+			<td><button><a href="<?php echo $this->getUrl('add', null , [], true);?>" style="text-decoration: none;">ADD ADMIN</a></button></td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<table class="grid-table" border="1px">
+		<?php if (!$admins): ?>
+		<tr>
+			<td colspan="8" align="center"><b>No data found.</b></td>
+		</tr>
+		<?php else: ?>
+		<tr align="center">
+			<th>Admin Id</th>
+			<th>Name</th>
+			<th>email</th>
+			<th>Status</th>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>EDIT</th>
+			<th>DELETE</th>
+		</tr>
+		<?php foreach ($admins as $admin) : ?>
+		<tr align="center">
+			<td><?php echo $admin->admin_id; ?></td>
+			<td><?php echo $admin->name; ?></td>
+			<td><?php echo $admin->email; ?></td>
+			<td><?php echo $admin->getStatusText(); ?></td>
+			<td><?php echo $admin->created_at; ?></td>
+			<td><?php echo $admin->updated_at; ?></td>
+			<td><a href="<?php echo $this->getUrl('edit', null, ['id' => $admin->admin_id], true) ?>">EDIT</a></td>
+			<td><a href="<?php echo $this->getUrl('delete', null, ['id' => $admin->admin_id], true) ?>">DELETE</a></td>
+		</tr>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</table>
+</body>
+</html>

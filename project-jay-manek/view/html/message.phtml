@@ -1,0 +1,28 @@
+<style type="text/css">
+	.success{
+		background-color: green;
+		color: white;
+		text-align: center;
+	}
+	.failure{
+		background-color: red;
+		color: white;
+		text-align: center;
+	}
+	.notice{
+		background-color: orange;
+		color: white;
+		text-align: center;
+	}
+</style>
+<?php
+$messageObject = Ccc::getModel('Core_Message');
+$messageObject->getSession()->start();
+if (isset($_SESSION['message'])) {
+	$messages = $messageObject->getMessages();
+	foreach ($messages as $type => $message) {
+		echo "<h3 class ='" . $type . "' >" . $message . "</h3>";
+	}
+	$messageObject->clearMessage();
+}
+?>

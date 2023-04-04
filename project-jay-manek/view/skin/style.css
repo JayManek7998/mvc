@@ -1,0 +1,83 @@
+/*Grid Page Data table*/
+.grid-table{
+	border: 1px solid;
+	width: 100%;
+	align:center;
+	background-color: whitesmoke;
+}
+.grid-table tr{
+	align: center;
+}
+.grid-table td{
+	border: 1px solid;
+}
+.grid-table th{
+	border: 1px solid;
+}
+
+/*Grid Page Manage Lable Table*/
+.manage-table{
+	border: 1px solid;
+	width: 100%;
+	align:center;
+	background-color: lightgray;
+}
+.manage-table tr{
+	align: center;
+}
+.manage-table td{
+	border: 1px solid;
+}
+
+.add-header{
+	width: 100%;
+	text-align:center;
+	background-color: lightcyan;
+	padding: 15px;
+	
+}
+.add-header tr{
+	align: center;
+}
+
+
+/*Add data table*/
+.add-data-table{
+	border: 1px solid;
+	width: 50%;
+	text-align:center;
+	background-color: antiquewhite;
+}
+.add-data-table tr{
+	align: center;
+}
+.add-data-table td{
+	border: 1px solid;
+}
+
+
+/*Edir data page header*/
+.edit-header{
+	width: 100%;
+	text-align:center;
+	background-color: lightcyan;
+	padding: 15px;
+}
+.edit-header tr{
+	align: center;
+}
+
+
+/*Edit data table*/
+.edit-data-table{
+	border: 1px solid;
+	width: 50%;
+	text-align:center;
+	background-color: antiquewhite;
+}
+.edit-data-table tr{
+	align: center;
+}
+.edit-data-table td{
+	border: 1px solid;
+}
